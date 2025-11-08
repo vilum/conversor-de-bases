@@ -7,13 +7,8 @@ def converter_base():
 
         try:
             base_origem = int(input("Digite a base de origem (2 a 16): "))
-            base_destino = int(input("Digite a base de destino (2 a 16): "))
         except ValueError:
             print("Erro: as bases devem ser números inteiros entre 2 e 16.")
-            continue
-
-        if not (2 <= base_origem <= 16 and 2 <= base_destino <= 16):
-            print("Erro: as bases devem estar entre 2 e 16.")
             continue
 
         for d in numero:
@@ -21,6 +16,16 @@ def converter_base():
                 print(f"Erro: '{d}' não é válido na base {base_origem}.")
                 break
         else:
+            try:
+                base_destino = int(input("Digite a base de destino (2 a 16): "))
+            except ValueError:
+                print("Erro: as bases devem ser números inteiros entre 2 e 16.")
+                continue
+
+            if not (2 <= base_origem <= 16 and 2 <= base_destino <= 16):
+                print("Erro: as bases devem estar entre 2 e 16.")
+                continue
+
             # Converter para decimal
             decimal = 0
             expoente = len(numero) - 1
