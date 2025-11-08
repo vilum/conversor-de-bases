@@ -40,7 +40,7 @@ def converter_base():
             print(f"\n {numero} na base {base_origem} \n corresponde a \n {resultado} na base {base_destino}")
 
         continuar = input("\nDigite 's' para converter outro número ou qualquer outra tecla para sair: ").strip()
-        if continuar != "s":
+        if continuar.lower() != "s":
             print("Encerrando o programa...")
             break
 
