@@ -21,6 +21,7 @@ def converter_base():
                 print(f"Erro: '{d}' não é válido na base {base_origem}.")
                 break
         else:
+            # Converter para decimal
             decimal = 0
             expoente = len(numero) - 1
             for d in numero:
@@ -28,6 +29,7 @@ def converter_base():
                 decimal += valor * (base_origem ** expoente)
                 expoente -= 1
 
+            # Converter de decimal para base de destino
             if decimal == 0:
                 resultado = "0"
             else:
