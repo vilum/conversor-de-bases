@@ -1,4 +1,4 @@
-Estre respositório contém um projeto voltado para converter a base numéricas de numeros digitados pelo usuário.
+Este respositório contém um projeto voltado para converter a base numéricas de numeros digitados pelo usuário.
 Foi realizado como um projeto acadêmico.
 Foi desenvolvido em duas versões, uma em Python (primariamente por @nome) e outra em VBA para Excel (por @vilum).
 
