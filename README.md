@@ -6,10 +6,8 @@ Possui duas versões:
   - VBA para Excel (por @vilum).
 
 Para executar a versão em Python:
-  1. Certifique-se de ter o Python instalados;
+  1. Certifique-se de ter o Python instalado;
   2. No terminal, execute 'python src.py'.
-
-
 
 Para executar a versão em VBA:
   1. Certifique-se de ter o Excel instalado;
