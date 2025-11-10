@@ -1,6 +1,6 @@
 Attribute VB_Name = "Módulo1"
 Private Const LARG_LABEL As Double = 15
-Private Const LARG_COL   As Double = 20
+Private Const LARG_COL   As Double = 45
 
 Private tempList As Variant
 
@@ -13,23 +13,25 @@ Sub btnTela_Clique()
   Dim i As Integer
   
   With Worksheets("Tela Principal")
-    If .Columns(2).ColumnWidth = LARG_LABEL Then modificacao = 4.5
+    If .Columns(2).ColumnWidth = LARG_LABEL Then modificacao = 24.5
     
     For i = 3 To 7
       .Columns(i).ColumnWidth = LARG_COL - modificacao
     Next i
     
-    modificacao = modificacao * 2.5
+    modificacao = modificacao * 0.25
     .Columns(2).ColumnWidth = LARG_LABEL - modificacao
     
     If modificacao <> 0 Then
       .Cells(2, 2).Value = "B"
       .Cells(3, 2).Value = "I"
       .Cells(4, 2).Value = "O"
+      .ListObjects("tabelaOutput").DataBodyRange.Font.Size = 15
     Else
       .Cells(2, 2).Value = "Base"
       .Cells(3, 2).Value = "Input"
       .Cells(4, 2).Value = "Output"
+      .ListObjects("tabelaOutput").DataBodyRange.Font.Size = 24
     End If
     
   End With

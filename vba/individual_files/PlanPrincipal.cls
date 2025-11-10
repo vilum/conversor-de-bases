@@ -78,7 +78,7 @@ End Sub
 
 Private Function NumeroValidoNaBase(numeroInput As String, baseOrigem As Integer) As Boolean
    Dim digitosPossiveis As Variant
-   digitosPossiveis = GetDigitosPossiveis(baseOrigem)
+   digitosPossiveis = PlanDigitos.Range("A1: A32").Value
 
    ' Percorra os caracteres do número de entrada e verifique se é válido para a base
    Dim caractere As String
@@ -116,14 +116,6 @@ Private Sub EntradaInvalida(baseOrigem As Integer, colInput As Integer)
    Me.Range("regiaoInput").Cells(1, colInput).Value = ""
 End Sub
 
-Private Function GetDigitosPossiveis(base As Integer) As Variant
-   If base = 32 Then
-      GetDigitosPossiveis = PlanDigitos.ListObjects("tabelaDigitos").ListColumns("32").DataBodyRange.Value
-   Else
-      GetDigitosPossiveis = PlanDigitos.ListObjects("tabelaDigitos").ListColumns("2 a 16").DataBodyRange.Value
-   End If
-End Function
-
 Private Function Converta(valor As String, baseOrigem As Integer, baseDestino As Integer) As String
    Dim resultado As String
 
@@ -134,16 +126,16 @@ Private Function Converta(valor As String, baseOrigem As Integer, baseDestino As
 End Function
 
 Private Function ParaDecimal(numero As String, baseOrigem As Integer) As String
-   Dim exponente As LongLong, dec As LongLong
-   exponente = 0
+   Dim expoente As LongLong, dec As LongLong
+   expoente = 0
    dec = 0
 
    Dim i As Long, digito As Integer
 
    For i = Len(numero) To 1 Step -1
       digito = ValorDoDigito(Mid(numero, i, 1), baseOrigem)
-      dec = dec + digito * (baseOrigem ^ exponente)
-      exponente = exponente + 1
+      dec = dec + digito * CLngLng(baseOrigem) ^ expoente
+      expoente = expoente + 1
    Next i
 
    ParaDecimal = CStr(dec)
@@ -153,7 +145,7 @@ Private Function ValorDoDigito(caractere As String, baseOrigem As Integer) As In
    ' Traduza caracter para dígito equivalente na base 10
 
    Dim digitosPossiveis As Variant
-   digitosPossiveis = GetDigitosPossiveis(baseOrigem)
+   digitosPossiveis = PlanDigitos.Range("A1: A32").Value
 
    Dim i As Integer
 
@@ -167,8 +159,8 @@ End Function
 
 Private Function DeDecimal(numero As String, baseDestino As Integer) As String
    Dim digitosPossiveis As Variant
-   digitosPossiveis = GetDigitosPossiveis(baseDestino)
-
+   digitosPossiveis = PlanDigitos.Range("A1: A32").Value
+   
    Dim resultado As String
    resultado = ""
 
@@ -178,8 +170,8 @@ Private Function DeDecimal(numero As String, baseDestino As Integer) As String
    quociente = dec
    Do
       Dim l As LongLong
-      resto = quociente Mod baseDestino
-      quociente = CInt(quociente \ baseDestino)
+      resto = quociente Mod CLngLng(baseDestino)
+      quociente = (quociente \ CLngLng(baseDestino))
 
       resultado = digitosPossiveis(resto + 1, 1) & resultado
    Loop While quociente > 0
